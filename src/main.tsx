@@ -1,18 +1,19 @@
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import { createRoot } from "react-dom/client";
 
-import "@mantine/core/styles.css"
-import "@mantine/dates/styles.css"
-import "@mantine/dropzone/styles.css"
-import "@mantine/notifications/styles.css"
-import "@mantine/spotlight/styles.css"
-import "@mantine/tiptap/styles.css"
-import './index.css'
+import { MantineProvider } from "@mantine/core";
 
-import {MantineProvider} from '@mantine/core'
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
+import "@mantine/dropzone/styles.css";
+import "@mantine/notifications/styles.css";
+import "@mantine/spotlight/styles.css";
+import "@mantine/tiptap/styles.css";
 
-createRoot(document.getElementById('root')!).render(
+import App from "./App.tsx";
+import "./index.css";
+
+createRoot(document.getElementById("root")!).render(
   <MantineProvider>
     <App />
-  </MantineProvider>
-)
+  </MantineProvider>,
+);
