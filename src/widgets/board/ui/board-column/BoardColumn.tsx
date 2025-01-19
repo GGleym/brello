@@ -1,25 +1,25 @@
+import { PropsWithChildren } from "react";
+
 import { Droppable } from "@hello-pangea/dnd";
-import { Button, Paper, Stack, Title } from "@mantine/core";
-import { IconPlaylistAdd } from "@tabler/icons-react";
+import { Paper, Stack, Title } from "@mantine/core";
 
 import { type TBoardListItem } from "../../lib/types";
 import { Card } from "./ui";
 
-export const BoardColumn = ({ id, title, cards }: TBoardListItem) => (
-  <Droppable key={id} droppableId={id}>
-    {(provided) => (
-      <div ref={provided.innerRef} {...provided.droppableProps}>
+export const BoardColumn = ({ id: columnId, title, cards, children }: PropsWithChildren<TBoardListItem>) => (
+  <Droppable key={columnId} droppableId={columnId}>
+    {({ droppableProps, innerRef, placeholder }) => (
+      <div ref={innerRef} {...droppableProps}>
         <Paper p="md" bg="teal.1" radius="md">
           <Title order={4} mb="md">
             {title}
           </Title>
           <Stack gap="xs">
             {cards.map(({ id, title }, index) => (
-              <Card key={id} id={id} text={title} index={index} />
+              <Card columnId={columnId} key={id} id={id} title={title} index={index} />
             ))}
-            <Button fullWidth color="teal" variant="light" mt="sm" leftSection={<IconPlaylistAdd size={14} />}>
-              Добавить
-            </Button>
+            {placeholder}
+            {children}
           </Stack>
         </Paper>
       </div>
