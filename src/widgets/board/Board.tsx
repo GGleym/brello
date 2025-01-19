@@ -1,13 +1,13 @@
-import { useState } from "react";
-
 import { DragDropContext } from "@hello-pangea/dnd";
 import { Container, Grid, Group, Stack, Text } from "@mantine/core";
+import { useUnit } from "effector-react";
+import { $board, KanbanCreateCard, cardCreateClicked, updateBoard } from "kanban";
 
-import { INITIAL_BOARD } from "./lib";
 import { BoardColumn } from "./ui";
 
 export const Board = () => {
-  const [board] = useState(INITIAL_BOARD);
+  const [board] = useUnit([$board, updateBoard]);
+  const [onCreateCard] = useUnit([cardCreateClicked]);
 
   return (
     <Container size="md" py="md">
@@ -20,6 +20,7 @@ export const Board = () => {
             {board.map(({ id, title, cards }) => (
               <Grid.Col key={id} id={id} span={4}>
                 <BoardColumn id={id} title={title} cards={cards} />
+                <KanbanCreateCard onCreate={(card) => onCreateCard({ card, columnId: id })} />
               </Grid.Col>
             ))}
           </Grid>
