@@ -10,8 +10,12 @@ import "@mantine/notifications/styles.css";
 import "@mantine/spotlight/styles.css";
 import "@mantine/tiptap/styles.css";
 
+import { api } from "~/shared/api";
+
 import App from "./App.tsx";
 import "./globals.css";
+
+api.kanban.listsLoadFx();
 
 createRoot(document.getElementById("root")!).render(
   <MantineProvider>
