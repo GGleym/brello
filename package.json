@@ -15,7 +15,7 @@
     "prepare": "husky || true",
     "format": "prettier --write '.'",
     "db.init": "supabase init",
-    "db.link": "supabase link --project-ref $(project)",
+    "db.link": "supabase link",
     "db.start": "supabase start",
     "db.stop": "supabase stop",
     "db.status": "supabase status",

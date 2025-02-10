@@ -28,7 +28,53 @@ export type Database = {
   };
   public: {
     Tables: {
-      [_ in never]: never;
+      cards: {
+        Row: {
+          created_at: string;
+          id: string;
+          list_id: string;
+          title: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          list_id?: string;
+          title: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          list_id?: string;
+          title?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "cards_list_id_fkey";
+            columns: ["list_id"];
+            isOneToOne: false;
+            referencedRelation: "lists";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      lists: {
+        Row: {
+          created_at: string;
+          id: string;
+          title: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          title: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          title?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
